@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Queue
 {
-    class Queue
+    class Queue11
     {
         static void Main()
         {
@@ -15,6 +15,7 @@ namespace Queue
             q.Push(3);
             q.Push(2);
             q.Push(5);
+            q.Write();
             q.Pull();
             Console.WriteLine(q.IsEmpty());
             q.Write();
@@ -43,53 +44,66 @@ namespace Queue
                 else
                 {
                     value = Next.value;
-                    Next.Pull();
                 }
             }
             public void Write()
             {
-                while(Next!=null)
+                if (Next != null)
                 {
-                    Console.Write(value + ' ');
+                    Console.Write(value + "   ");
                     Next.Write();
                 }
+                else
+                {
+                    Console.Write(value);
+                    Console.WriteLine();
+                }
+               
             }
         }
         class Queue
         {
-            private QueueNode Top;
+            private QueueNode first;
+            public Queue()
+            {
+                first = null;
+            }
+            public void Top()
+            {
+                Console.WriteLine(first);
+            }
             public void Push(int newval)
             {
-                if (Top == null)
-                    Top = new QueueNode(newval);
+                if (first == null)
+                    first = new QueueNode(newval);
                 else
-                    Top.Push(newval);
+                    first.Push(newval);
             }
             public void Pull()
             {
-                if (Top == null)
+                if (first == null)
                     Console.WriteLine("No queue");
                 else
-                    Top.Pull();
+                    first = first.Next;
             }
             public bool IsEmpty()
             {
-                if (Top == null) return true;
+                if (first == null) return true;
                 else return false;
             }
             public void Delete()
             {
-                while(!IsEmpty())
+                while (!IsEmpty())
                 {
                     Pull();
                 }
             }
             public void Write()
             {
-                if (Top == null)
+                if (first == null)
                     Console.WriteLine("No tree");
                 else
-                    Top.Write();                
+                    first.Write();
             }
         }
 
